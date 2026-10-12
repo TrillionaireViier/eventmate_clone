@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eventmate | event platform</title>
+  <meta name="description" content="All-in-one event management tool for selling tickets, guest check-ins, and reminders via WhatsApp & messengers. Built for European & global events.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23111827'/><path d='M30 50L45 65L72 35' stroke='%232ad590' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#0c1523',
+              dark: '#111827',
+              green: '#2ad590',
+              greenHover: '#22be7e',
+              surface: '#F8F9FB',
+              border: 'rgba(15, 23, 42, 0.08)',
+              muted: '#64748B'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+    }
+    .badge-subtle {
+      background: #F1F5F9;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 9999px;
+    }
+    .eventmate-pill-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 selection:bg-brand-green/30">
+
+  <!-- 1. STICKY TOP NAVIGATION BAR -->
+  <div class="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <nav class="eventmate-pill-nav pointer-events-auto rounded-full py-2.5 px-4 sm:px-6 flex items-center justify-between gap-6 max-w-4xl w-full">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2 group">
+        <span class="w-7 h-7 rounded-lg bg-black text-[#2ad590] font-black text-sm flex items-center justify-center transition-transform group-hover:scale-105">
+          em
+        </span>
+        <span class="font-extrabold text-lg tracking-tight text-slate-900">
+          eventmate<span class="text-[#2ad590]">.</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav Items -->
+      <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <a href="#features" class="hover:text-black transition-colors">Features</a>
+        <a href="#how-it-works" class="hover:text-black transition-colors">How it works</a>
+        <a href="#attendee-flow" class="hover:text-black transition-colors">Guest experience</a>
+        <a href="#pricing" class="hover:text-black transition-colors">Pricing</a>
+      </div>
+
+      <!-- Action CTAs -->
+      <div class="flex items-center gap-3">
+        <a href="#contact-modal" onclick="openDemoModal('talk')" class="hidden sm:inline-block text-xs font-semibold text-slate-700 hover:text-black px-3 py-2 rounded-full hover:bg-slate-100 transition-colors">
+          Talk to the team
+        </a>
+        <button onclick="openDemoModal('create')" class="px-4 py-2 rounded-full bg-black hover:bg-slate-800 text-white text-xs font-semibold shadow-sm hover:shadow transition-all">
+          Create event
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 2. HERO SECTION -->
+  <section class="pt-32 pb-16 sm:pt-40 sm:pb-24 px-4 sm:px-6 max-w-7xl mx-auto text-center relative overflow-hidden">
+    <div class="max-w-4xl mx-auto space-y-6">
+      
+      <!-- Top Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200/60">
+        <span class="w-2 h-2 rounded-full bg-[#2ad590] animate-pulse"></span>
+        Event platform for Europe & UK
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-950 tracking-tight leading-[1.08]">
+        Planning an event?<br>
+        <span class="text-slate-900">Do it with eventmate</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+        Launch events, sell tickets, collect registrations, and check guests in at the door — all through frictionless links and messengers.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4">
+        <button onclick="openDemoModal('create')" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-black hover:bg-slate-800 text-white text-sm font-semibold shadow-lg shadow-black/10 hover:shadow-black/20 transition-all flex items-center justify-center gap-2">
+          <span>Create event</span>
+          <span>&rarr;</span>
+        </button>
+        <button onclick="openDemoModal('talk')" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200/80 text-slate-900 text-sm font-semibold transition-all">
+          Talk to the team
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero Showcase Illustration -->
+    <div class="mt-14 max-w-5xl mx-auto rounded-3xl border border-slate-200/80 bg-slate-50/50 p-3 sm:p-5 shadow-2xl shadow-slate-200/50">
+      <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
+        <div class="relative bg-gradient-to-b from-slate-900 to-slate-950 text-white p-8 sm:p-12 text-left rounded-t-2xl overflow-hidden">
+          <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-[#2ad590]/10 blur-3xl pointer-events-none"></div>
+          
+          <div class="max-w-2xl space-y-4 relative z-10">
+            <span class="inline-block px-3 py-1 rounded-full bg-[#2ad590]/20 text-[#2ad590] text-xs font-bold uppercase tracking-wider">
+              Live Preview
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Summer Community Meetup 💙
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              August 19 at 5:00 PM • Creative Hall, Kyiv & Online Stream • Tickets from €15
+            </p>
+          </div>
+
+          <!-- Hero Ticket Preview Interactive Card -->
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-4 text-left">
+              <div class="flex justify-between items-center mb-1">
+                <span class="text-xs text-slate-400 font-medium">Early Bird</span>
+                <span class="text-xs text-[#2ad590] font-bold">Sold Out</span>
+              </div>
+              <div class="text-xl font-bold text-white">€15</div>
+              <div class="text-[11px] text-slate-400 mt-1">100 / 100 claimed</div>
+            </div>
+
+            <div class="bg-white/15 backdrop-blur-md border border-[#2ad590]/50 rounded-xl p-4 text-left ring-2 ring-[#2ad590]/20">
+              <div class="flex justify-between items-center mb-1">
+                <span class="text-xs text-[#2ad590] font-semibold">Standard</span>
+                <span class="text-xs bg-[#2ad590] text-black px-2 py-0.5 rounded-full font-bold text-[10px]">Active</span>
+              </div>
+              <div class="text-xl font-bold text-white">€25</div>
+              <div class="text-[11px] text-slate-300 mt-1">Instant Apple Pay & Card</div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-4 text-left">
+              <div class="flex justify-between items-center mb-1">
+                <span class="text-xs text-slate-400 font-medium">VIP Pass</span>
+                <span class="text-xs text-amber-400 font-bold">12 Left</span>
+              </div>
+              <div class="text-xl font-bold text-white">€45</div>
+              <div class="text-[11px] text-slate-400 mt-1">Exclusive speaker dinner</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Proof Bar -->
+        <div class="py-5 px-6 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500">
+          <div class="flex items-center gap-2">
+            <span class="flex -space-x-2">
+              <span class="w-7 h-7 rounded-full bg-violet-500 text-white flex items-center justify-center font-bold border-2 border-white text-[10px]">A</span>
+              <span class="w-7 h-7 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold border-2 border-white text-[10px]">M</span>
+              <span class="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold border-2 border-white text-[10px]">D</span>
+              <span class="w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold border-2 border-white text-[10px]">+1k</span>
+            </span>
+            <span class="font-medium text-slate-700">Over 1,840+ verified guests checked in</span>
+          </div>
+          <div class="flex items-center gap-6 font-medium">
+            <span>✓ No apps required</span>
+            <span>✓ WhatsApp & chat tickets</span>
+            <span>✓ 0 queues door scanner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. VALUE PROPOSITION -->
+  <section class="py-20 bg-slate-50/70 border-y border-slate-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          You imagine the format.<br>
+          <span class="text-[#059669]">We help bring people together</span>
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+          From intimate meetups and lecture series to parties and festivals with thousands of guests, eventmate adapts to your event — not the other way around.
+        </p>
+      </div>
+
+      <!-- Format Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-3xl mb-3">☕</div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Meetups & Workshops</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Fast approval forms, guest qualification, and instant messaging.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-3xl mb-3">🎤</div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Conferences & Talks</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Multi-tier tickets, speaker schedules, and company invoices.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-3xl mb-3">🎪</div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Parties & Festivals</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">High-volume door QR scanner from multiple smartphones concurrently.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-3xl mb-3">🔒</div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Private Closed Clubs</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Manual guest screening, secret venue links, and member badges.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HOW IT WORKS: ONE EVENT, ONE WORKFLOW -->
+  <section id="how-it-works" class="py-24 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+      <span class="badge-subtle">How it works</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight">
+        One event. One simple workflow
+      </h2>
+      <p class="text-slate-600 text-base sm:text-lg">
+        Create your page, open registration or ticket sales, manage your guest list, and welcome people at the door — all without forms, spreadsheets, or separate tools.
+      </p>
+    </div>
+
+    <!-- 4-Step Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Step 01 -->
+      <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/70 space-y-4 hover:border-slate-300 transition-colors">
+        <div class="font-black text-3xl text-slate-300">01</div>
+        <h3 class="font-bold text-lg text-slate-900">Create your event page</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Add a cover image, description, date, venue, schedule, and tickets — everything guests need packaged into one beautiful shareable link.
+        </p>
+        <div class="pt-2">
+          <span class="text-[11px] font-semibold text-slate-700 bg-white px-2.5 py-1 rounded-md border border-slate-200">
+            Link in bio ready
+          </span>
+        </div>
+      </div>
+
+      <!-- Step 02 -->
+      <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/70 space-y-4 hover:border-slate-300 transition-colors">
+        <div class="font-black text-3xl text-slate-300">02</div>
+        <h3 class="font-bold text-lg text-slate-900">Open sales & registration</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Share your link anywhere. Guests pay with Apple Pay, Google Pay, or standard cards in 2 taps without mandatory app installations.
+        </p>
+        <div class="pt-2">
+          <span class="text-[11px] font-semibold text-[#059669] bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+            Instant payouts
+          </span>
+        </div>
+      </div>
+
+      <!-- Step 03 -->
+      <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/70 space-y-4 hover:border-slate-300 transition-colors">
+        <div class="font-black text-3xl text-slate-300">03</div>
+        <h3 class="font-bold text-lg text-slate-900">Track guests & statuses</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Monitor ticket quotas, review custom questionnaire responses, approve private attendees, and delegate admin access to your team.
+        </p>
+        <div class="pt-2">
+          <span class="text-[11px] font-semibold text-slate-700 bg-white px-2.5 py-1 rounded-md border border-slate-200">
+            Real-time CRM
+          </span>
+        </div>
+      </div>
+
+      <!-- Step 04 -->
+      <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/70 space-y-4 hover:border-slate-300 transition-colors">
+        <div class="font-black text-3xl text-slate-300">04</div>
+        <h3 class="font-bold text-lg text-slate-900">Check guests in 0 queues</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Scan QR tickets from any smartphone camera at the entrance and instantly see arrival stats, duplicate protection, and guest names.
+        </p>
+        <div class="pt-2">
+          <span class="text-[11px] font-semibold text-slate-700 bg-white px-2.5 py-1 rounded-md border border-slate-200">
+            Multi-phone scanner
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. GUEST EXPERIENCE PIPELINE -->
+  <section id="attendee-flow" class="py-24 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-[#2ad590] text-xs font-semibold">
+          Attendee experience
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          Guests register once.<br>
+          <span class="text-slate-400">Eventmate guides them to check-in</span>
+        </h2>
+        <p class="text-slate-400 text-base sm:text-lg">
+          No lost emails, forgotten passwords, or panicked searches in line. The entire journey happens smoothly right inside messenger chats.
+        </p>
+      </div>
+
+      <!-- 3 Flow Steps -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="bg-slate-800/60 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-xl">
+            🔗
+          </div>
+          <h3 class="font-bold text-lg text-white">1. Opens the event page</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Date, venue, detailed schedule, speaker profiles, and pricing are cleanly organized in one intuitive link.
+          </p>
+        </div>
+
+        <div class="bg-slate-800/60 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-[#2ad590]/20 text-[#2ad590] flex items-center justify-center text-xl">
+            💳
+          </div>
+          <h3 class="font-bold text-lg text-white">2. Buys a ticket or registers</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Through the web page or direct WhatsApp / Telegram flow. Payment confirms in seconds with instant card processing.
+          </p>
+        </div>
+
+        <div class="bg-slate-800/60 border border-white/10 rounded-2xl p-6 space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-xl">
+            🎟️
+          </div>
+          <h3 class="font-bold text-lg text-white">3. Shows QR code at the door</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Confirmation, reminders, and personal ticket arrive in chat. At the door, guests flash the QR code on their phone screen.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PLATFORM FEATURE MATRIX -->
+  <section id="features" class="py-24 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+      <span class="badge-subtle">Platform features</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight">
+        Everything your format needs
+      </h2>
+      <p class="text-slate-600 text-base sm:text-lg">
+        Every event format has its own rhythm. Turn on only the modules you need for your specific production.
+      </p>
+    </div>
+
+    <!-- Feature Grid with Live Previews -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Feature 1: Tickets & Payments -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-slate-900 text-base">Tickets and payments</h3>
+          <span class="text-xl">💳</span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Create ticket types, promo codes, capacity limits, and track every sale in real-time.
+        </p>
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs space-y-2">
+          <div class="flex justify-between font-medium text-slate-700">
+            <span>Early Bird (Limit 100)</span>
+            <span class="font-bold text-slate-900">€20</span>
+          </div>
+          <div class="flex justify-between font-medium text-slate-700">
+            <span>Standard Admission</span>
+            <span class="font-bold text-slate-900">€35</span>
+          </div>
+          <div class="flex justify-between text-[#059669] font-bold">
+            <span>Promo Code: SUMMER10</span>
+            <span>-10%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Registration Form -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-slate-900 text-base">Custom registration form</h3>
+          <span class="text-xl">📝</span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Ask attendees only for the information your event needs: dietary preferences, company, T-shirt size.
+        </p>
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs space-y-1.5">
+          <div class="text-slate-400">Full Name: Anna Weber</div>
+          <div class="text-slate-400">Diet: Vegetarian / Vegan</div>
+          <div class="text-slate-400">Role: Product Designer</div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Attendee Database -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-slate-900 text-base">Attendee database (CRM)</h3>
+          <span class="text-xl">👥</span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Keep every guest contact, payment status, and check-in timestamp unified in one central table.
+        </p>
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs space-y-1.5 font-mono">
+          <div class="flex justify-between text-slate-700">
+            <span>Anna W.</span>
+            <span class="text-[#059669] font-semibold">Paid VIP</span>
+          </div>
+          <div class="flex justify-between text-slate-700">
+            <span>Marc K.</span>
+            <span class="text-blue-600 font-semibold">Registered</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 4: Messages & WhatsApp -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-slate-900 text-base">Messages to attendees</h3>
+          <span class="text-xl">💬</span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Broadcast important schedule updates or location reminders to everyone or targeted ticket groups.
+        </p>
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs text-slate-600 italic">
+          "Reminder: doors open at 17:00! Have your QR code ready on screen."
+        </div>
+      </div>
+
+      <!-- Feature 5: QR Check-in -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-slate-900 text-base">Mobile QR check-in</h3>
+          <span class="text-xl">📲</span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Fast entrance check-in with any standard phone camera. Zero duplicate scans, 100% offline-ready.
+        </p>
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs flex items-center justify-between">
+          <span class="font-mono text-slate-700">Scan speed: 0.4s</span>
+          <span class="font-bold text-[#059669]">✓ Entry Confirmed</span>
+        </div>
+      </div>
+
+      <!-- Feature 6: Re-invite Past Guests -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-slate-900 text-base">Reinvite past guests</h3>
+          <span class="text-xl">🔄</span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          One-click invite past audiences to your upcoming season or secret afterparty with pre-filled profiles.
+        </p>
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs flex justify-between text-slate-600">
+          <span>Target: Past attendees</span>
+          <span class="font-bold text-slate-900">1,842 contacts</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. PRICING & TIERS -->
+  <section id="pricing" class="py-24 bg-slate-50/70 border-t border-slate-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <span class="badge-subtle">Pricing</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight">
+          Simple, transparent event fees
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg">
+          Free for free community events. Pay only a small percentage when you sell paid tickets.
+        </p>
+      </div>
+
+      <!-- Pricing Plans -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        
+        <!-- Plan 1: Free Events -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-slate-500 text-xs uppercase tracking-wider mb-2">Community</div>
+            <h3 class="font-black text-2xl text-slate-900">Free Events</h3>
+            <div class="font-black text-4xl text-slate-900 mt-4 mb-2">€0</div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              100% free forever for non-commercial meetups, community discussions, and free lectures.
+            </p>
+            <ul class="text-xs text-slate-600 space-y-2.5 mt-6 border-t border-slate-100 pt-6">
+              <li>✓ Unlimited free registrations</li>
+              <li>✓ Full registration form builder</li>
+              <li>✓ Mobile QR check-in scanner</li>
+              <li>✓ Messenger reminders</li>
+            </ul>
+          </div>
+          <button onclick="openDemoModal('free')" class="w-full py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs transition-colors">
+            Start Free
+          </button>
+        </div>
+
+        <!-- Plan 2: Standard Ticket Sales -->
+        <div class="bg-white rounded-3xl p-8 border-2 border-black shadow-xl space-y-6 flex flex-col justify-between relative">
+          <div class="absolute -top-3.5 right-6 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            Most Popular
+          </div>
+          <div>
+            <div class="font-bold text-[#059669] text-xs uppercase tracking-wider mb-2">Ticketed</div>
+            <h3 class="font-black text-2xl text-slate-900">Paid Tickets</h3>
+            <div class="font-black text-4xl text-slate-900 mt-4 mb-2">3.5% <span class="text-sm font-normal text-slate-500">+ €0.49 per ticket</span></div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              No monthly subscriptions. No setup fee. You only pay when you make a sale.
+            </p>
+            <ul class="text-xs text-slate-600 space-y-2.5 mt-6 border-t border-slate-100 pt-6">
+              <li>✓ Instant card acquiring & Apple Pay</li>
+              <li>✓ Automated VAT invoices & receipts</li>
+              <li>✓ Promo codes and early bird tiers</li>
+              <li>✓ Next-day bank payouts</li>
+              <li>✓ Refund management tools</li>
+            </ul>
+          </div>
+          <button onclick="openDemoModal('paid')" class="w-full py-3 rounded-full bg-black hover:bg-slate-800 text-white font-semibold text-xs shadow-md transition-colors">
+            Launch Ticketed Event
+          </button>
+        </div>
+
+        <!-- Plan 3: Enterprise / Large Events -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-slate-500 text-xs uppercase tracking-wider mb-2">Custom</div>
+            <h3 class="font-black text-2xl text-slate-900">Festivals & Large Orgs</h3>
+            <div class="font-black text-4xl text-slate-900 mt-4 mb-2">Custom</div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Tailored rates for events over 2,000 attendees, bespoke API integrations, and onsite staffing.
+            </p>
+            <ul class="text-xs text-slate-600 space-y-2.5 mt-6 border-t border-slate-100 pt-6">
+              <li>✓ Volume fee discount</li>
+              <li>✓ Dedicated Slack/WhatsApp support</li>
+              <li>✓ Custom domain (tickets.yourbrand.com)</li>
+              <li>✓ Turnkey door hardware check-in kits</li>
+            </ul>
+          </div>
+          <button onclick="openDemoModal('enterprise')" class="w-full py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs transition-colors">
+            Contact Sales
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. HUMAN SUPPORT & BOTTOM CTA -->
+  <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="rounded-3xl bg-slate-950 text-white p-8 sm:p-16 relative overflow-hidden text-center space-y-8">
+      <div class="max-w-2xl mx-auto space-y-4 relative z-10">
+        <span class="inline-block text-2xl">🫂</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          Create the event you’ve always wanted to run
+        </h2>
+        <p class="text-slate-400 text-base leading-relaxed">
+          Build your page and open registration or ticket sales in 10 minutes. If your format is complex, our team will help you configure everything personally.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+          <button onclick="openDemoModal('create')" class="w-full sm:w-auto px-8 py-4 rounded-full bg-[#2ad590] hover:bg-[#22be7e] text-slate-950 font-bold text-sm transition-all shadow-lg shadow-[#2ad590]/20">
+            Create event now
+          </button>
+          <button onclick="openDemoModal('expert')" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-sm transition-all border border-white/10">
+            Talk to an expert
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FOOTER -->
+  <footer class="border-t border-slate-200/80 py-12 text-xs text-slate-500 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-2 font-bold text-slate-900">
+        <span class="w-5 h-5 rounded bg-black text-[#2ad590] text-[10px] flex items-center justify-center font-black">em</span>
+        eventmate.live
+      </div>
+      <div>
+        © 2026 eventmate. All rights reserved. Built for creators, communities, and festivals.
+      </div>
+      <div class="flex gap-6 font-medium text-slate-600">
+        <a href="#" class="hover:text-black">Privacy policy</a>
+        <a href="#" class="hover:text-black">Terms of service</a>
+        <a href="mailto:hello@eventmate.live" class="hover:text-black">hello@eventmate.live</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 10. INTERACTIVE DEMO / SIGNUP MODAL -->
+  <div id="demoModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative space-y-6">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 id="modalTitle" class="text-xl font-bold text-slate-900">Create your event</h3>
+          <p id="modalSubtitle" class="text-xs text-slate-500 mt-1">Get started in 2 minutes with zero upfront fees.</p>
+        </div>
+        <button onclick="closeDemoModal()" class="text-slate-400 hover:text-black text-2xl font-bold leading-none p-1">&times;</button>
+      </div>
+
+      <form onsubmit="handleModalSubmit(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Your Name</label>
+          <input type="text" id="modalName" required placeholder="Alex Miller" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-black">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Email or WhatsApp / Telegram</label>
+          <input type="text" id="modalContact" required placeholder="@username, +44... or email" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-black">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Event Type & Approx. Attendees</label>
+          <select class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-black">
+            <option>Meetup or Workshop (20 - 100 people)</option>
+            <option>Conference / Lecture (100 - 500 people)</option>
+            <option>Party, Concert or Festival (500 - 5,000+)</option>
+            <option>Closed Community / Private Club</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-full bg-black hover:bg-slate-800 text-white font-semibold text-xs shadow-md transition-all">
+          Continue & Launch Event &rarr;
+        </button>
+
+        <div id="modalSuccess" class="hidden text-center text-xs font-semibold text-[#059669] pt-1">
+          ✓ Request received! We will connect you to eventmate onboarding in 10 minutes.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openDemoModal(type) {
+      const modal = document.getElementById('demoModal');
+      const title = document.getElementById('modalTitle');
+      const subtitle = document.getElementById('modalSubtitle');
+      
+      if (type === 'talk' || type === 'expert') {
+        title.textContent = 'Talk to the eventmate team';
+        subtitle.textContent = 'Tell us about your format and get tailored recommendations.';
+      } else {
+        title.textContent = 'Create your event';
+        subtitle.textContent = 'Launch ticket sales or guest registration in 10 minutes.';
+      }
+
+      document.getElementById('modalSuccess').classList.add('hidden');
+      modal.classList.remove('hidden');
+    }
+
+    function closeDemoModal() {
+      document.getElementById('demoModal').classList.add('hidden');
+    }
+
+    function handleModalSubmit(e) {
+      e.preventDefault();
+      document.getElementById('modalSuccess').classList.remove('hidden');
+      setTimeout(() => {
+        closeDemoModal();
+        alert('Thank you! An eventmate specialist has received your inquiry and will reach out shortly.');
+      }, 1500);
+    }
+  </script>
+
+</body>
+</html>
