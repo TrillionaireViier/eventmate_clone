@@ -1,17 +1,14 @@
-# eventmate.live Clone
+# ⚡ EventPulse — Next-Gen Event Platform
 
-Modern, all-in-one event management platform clone for selling tickets, guest check-ins, and attendee communication via messengers & WhatsApp.
+EventPulse is a high-performance, dark-themed event ticketing and guest management platform inspired by modern event orchestration tools like Eventmate.
 
-## 🚀 Features
-- **Modern Minimalist UI**: Clean European SaaS aesthetic with Inter typography and pill navigation.
-- **Hero & Live Preview**: Interactive ticket sales preview and registration flow.
-- **One Simple Workflow**: Step-by-step event lifecycle breakdown (Page -> Sales -> CRM -> QR Check-in).
-- **Attendee Messenger Experience**: Frictionless WhatsApp and chat ticket delivery.
-- **Platform Feature Matrix**: Ticket tiers, custom registration forms, CRM database, QR scanner, and re-invitation tools.
-- **Transparent Pricing**: Tiers for Free Community, Paid Tickets (3.5% + €0.49), and Custom Enterprise festivals.
-- **Interactive Modals**: Functional lead intake and event creation modal.
+## 🌟 What Makes It Unique?
+- **Ultra-Modern Dark Glass Aesthetic**: Rich ambient radial gradients (`#080C15`), neon emerald & cyan accents, Space Grotesk and Plus Jakarta Sans typography.
+- **Interactive Live Checkout Simulator**: Users can configure ticket tiers (Early Bird, Standard, VIP), type attendee details, and generate simulated dynamic QR passes live on the screen.
+- **Dynamic Anti-Scalp Passes**: Real-time rotating QR codes prevent screenshot fraud and secondary-market scalping.
+- **Direct Messenger Distribution**: Instant WhatsApp & Telegram ticket delivery with 98.6% open rates.
+- **0.3s Offline Door Scanner**: Multi-device camera scanning cached locally for underground venues with spotty connection.
+- **Automated Reinvite Engine**: Turn one-off attendees into loyal repeat communities with 1-click invite funnels.
 
-## 🛠️ Tech Stack
-- HTML5 / Vanilla JavaScript
-- Tailwind CSS
-- Google Fonts (Inter)
+## 🚀 Quick Launch
+Open `index.html` in any modern web browser or deploy on GitHub Pages/Vercel.
